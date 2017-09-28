@@ -1,0 +1,19 @@
+<!--the Panel group (books list)-->
+<div class="jumbotron">
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default" *ngFor="let book of books; let i = index">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{i}}">
+          {{book.title}}</a>
+          <button id="editBtn" class="btn btn-info editBtn" (click)=editBook(i)>edit</button>
+          <button id="deleteBtn" class="btn btn-info editBtn" (click)="deleteBook(i)">delete</button>
+        </h4>
+      </div>
+      <div id="collapse{{i}}" class="panel-collapse collapse">
+        <div class="panel-body">{{book.author}}</div>
+        <div class="panel-body">{{book.date}}</div>
+      </div>
+    </div>
+  </div>
+</div>
