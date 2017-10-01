@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { BooksService } from './BooksService';
 import { Book } from './book';
 import {CapitalizePipe} from "./pipes/capitalize.pipe";
@@ -37,7 +38,10 @@ export class BooksListComponent implements OnInit {
     }
   }
 
-  editBook(index: number){
-
+  editBook(index: number, form: NgForm){
+    var book = this.books[index];
+    book.title = form.value.title;
+    book.author = form.value.author;
+    book.date = form.value.date;
   }
 }
