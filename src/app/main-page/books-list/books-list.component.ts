@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BooksService } from './BooksService';
 import { Book } from './book';
+import {CapitalizePipe} from "./pipes/capitalize.pipe";
 
 @Component({
   selector: 'app-books-list',
@@ -30,13 +31,13 @@ export class BooksListComponent implements OnInit {
   }
 
   deleteBook(index: number){
-    if(confirm("Are you sure to delete " + this.books[index].title +"?")) {
+    if(confirm("Are you sure you want to delete " + this.books[index].title +"?")) {
       this.books.splice(index, 1);
-      //delete the books from the data base
+      //delete the books from the database
     }
   }
 
   editBook(index: number){
-    
+
   }
 }

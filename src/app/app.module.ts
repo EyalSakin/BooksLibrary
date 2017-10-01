@@ -7,20 +7,22 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { BooksListComponent } from './main-page/books-list/books-list.component';
+import { CapitalizePipe } from './main-page/books-list/pipes/capitalize.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     MainPageComponent,
-    BooksListComponent
+    BooksListComponent,
+    CapitalizePipe
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [ CapitalizePipe ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

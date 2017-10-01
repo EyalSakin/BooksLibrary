@@ -5,14 +5,42 @@
       <div class="panel-heading">
         <h4 class="panel-title">
           <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{i}}">
-          {{book.title}}</a>
-          <button id="editBtn" class="btn btn-info editBtn" (click)=editBook(i)>edit</button>
-          <button id="deleteBtn" class="btn btn-info editBtn" (click)="deleteBook(i)">delete</button>
+          {{book.title | capitalize}}</a>
+          <a data-toggle="collapse" class="btn btn-info" data-parent="#accordion" href="#editor{{i}}">
+          edit</a>
+          <button id="deleteBtn" class="btn btn-info" (click)="deleteBook(i)">delete</button>
         </h4>
       </div>
       <div id="collapse{{i}}" class="panel-collapse collapse">
         <div class="panel-body">{{book.author}}</div>
-        <div class="panel-body">{{book.date}}</div>
+        <div class="panel-body">{{book.date | date:'fullDate'}}</div>
+      </div>
+      <div id="editor{{i}}" class="panel-collapse collapse">
+              <form class="form-horizontal" action="/action_page.php">
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="title">Title:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" value="{{book.title | capitalize}}" name="title">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="author">Author:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" value="{{book.author}}" name="author">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="date">Date:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" value="{{book.date | date:'fullDate'}}" name="date">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-default" (click)="editBook(i)">Submit</button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
