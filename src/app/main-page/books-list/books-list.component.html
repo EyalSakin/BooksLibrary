@@ -6,9 +6,13 @@
         <h4 class="panel-title">
           <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{i}}">
           {{book.title | capitalize}}</a>
-          <a data-toggle="collapse" class="btn btn-info" data-parent="#accordion" href="#editor{{i}}">
-          edit</a>
-          <button id="deleteBtn" class="btn btn-info" (click)="deleteBook(i)">delete</button>
+
+            <div class="buttonsDiv">
+              <a data-toggle="collapse" class="btn btn-info editBtn" data-parent="#accordion" href="#editor{{i}}">
+              edit</a>
+              <button id="deleteBtn" class="btn btn-info" (click)="deleteBook(i)">delete</button>
+            </div>
+
         </h4>
       </div>
       <div id="collapse{{i}}" class="panel-collapse collapse">
