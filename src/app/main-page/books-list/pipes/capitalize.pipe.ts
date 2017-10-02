@@ -3,21 +3,26 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({name: 'capitalize'})
 export class CapitalizePipe implements PipeTransform {
 
-    // transform(value:any) {
-    //     if (value) {
-    //         return value.replace(/\b\w/g, first => first.toLocaleUpperCase());
-    //     }else{
-    //         return value.charAt(0).toUpperCase() + value.slice(1);
-    //     }
-    // }
-
     transform(value:string) {
-      var validString: string = value.replace(/[^a-zA-Z]/g, ' ');
+      var string: string = value.replace(/[^a-zA-Z]/g, ' ');
 
-      if (validString) {
-        return validString.replace(/\b\w/g, first => first.toLocaleUpperCase());
-      }else{
-        return validString.charAt(0).toUpperCase() + value.slice(1);
+      if(string){
+        var result: string;
+
+        result = validateString(string);
+
+        return result.replace(/\b\w/g, first => first.toLocaleUpperCase());
+
+      }
+
+      function validateString(str: string): string{
+        var result: string;
+
+        result = str.replace(/^\s+|\s+$/gm,'');
+        result = result.replace(/ +/g, " ");
+        result = result.toLowerCase();
+
+        return result;
       }
     }
 }
