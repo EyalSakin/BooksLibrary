@@ -1,9 +1,50 @@
-<!--Navigation Bar-->
+<!-- Navbar -->
 <nav class="navbar navbar-default">
   <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="#">Books Library</a>
       </div>
-      <a class="btn btn-info navbar-btn"><span class="glyphicon glyphicon-plus"></span> Add A Book</a>
+      <div class="panel-group" id="addBookAccordion">
+        <div id="addBookDiv" class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a id="addBookBtn" class="btn btn-info" data-toggle="collapse" data-parent="#addBookAccordion" href="#addCollapse">Add A Book</a>
+            </h4>
+          </div>
+          <div id="addCollapse" class="panel-collapse collapse">
+              <form class="form-horizontal" (ngSubmit)="addBook(addForm)" #addForm="ngForm">
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="title">Title:</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control"
+                    [ngModel]="newTitle" name="title"
+                    id="title" ngModel required #title="ngModel">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="author">Author:</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="author"
+                      name="author" [ngModel]="newAuthor"
+                      ngModel required #author="ngModel">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="date">Date:</label>
+                  <div class="col-sm-10">
+                    <input type="date" class="form-control"
+                    id="date" [ngModel]="newDate"
+                    name="date" ngModel required #date="ngModel">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                  </div>
+                </div>
+              </form>
+          </div>
+        </div>
+      </div>
   </div>
 </nav>

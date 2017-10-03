@@ -8,6 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { BooksListComponent } from './main-page/books-list/books-list.component';
 import { CapitalizePipe } from './main-page/books-list/pipes/capitalize.pipe';
+import { BooksService } from './Books.service'
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { CapitalizePipe } from './main-page/books-list/pipes/capitalize.pipe';
     FormsModule,
     HttpModule
   ],
-  providers: [ CapitalizePipe ],
+  providers: [CapitalizePipe, BooksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

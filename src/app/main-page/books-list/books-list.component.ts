@@ -1,23 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { BooksService } from './BooksService';
 import { Book } from './book';
-import {CapitalizePipe} from "./pipes/capitalize.pipe";
+import { CapitalizePipe } from './pipes/capitalize.pipe';
+import { BooksService } from './../../Books.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-books-list',
   templateUrl: './books-list.component.html',
-  styleUrls: ['./books-list.component.css'],
-  providers: [BooksService]
+  styleUrls: ['./books-list.component.css']
 })
 export class BooksListComponent implements OnInit {
+
+  subscription: Subscription;
 
   errorMessage: string
   books: Book[] = [];
   errorString: string = 'server error';
 
   constructor(private _booksService: BooksService) {
-
+    this.subscription =  _booksService.sub.subscribe(val =>{
+      let newBook = val as Book;
+      this.books.push(newBook);
+    })
   }
 
   ngOnInit() {
@@ -29,6 +34,7 @@ export class BooksListComponent implements OnInit {
         .subscribe(
             books => this.books = books,
             error =>  this.errorMessage = <any>error);
+
   }
 
   deleteBook(index: number){
@@ -43,5 +49,6 @@ export class BooksListComponent implements OnInit {
     book.title = form.value.title;
     book.author = form.value.author;
     book.date = form.value.date;
+    //edit the book in the database
   }
 }
